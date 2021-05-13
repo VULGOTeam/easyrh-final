@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nya - Ichi Ni San</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/index.css') }}">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <form action="/salary/calculate" id="calculateForm">
+
+    <div class="segment">
+      <h1>Cálculo de Salário</h1>
+    </div>
+
+    <label>
+      <input id="gross" type="number" placeholder="Salário" />
+    </label>
+    <label>
+      <input type="number" name="months" id="months" placeholder="Meses" />
+    </label>
+    <label>
+      <input type="number" name="vacation_days" id="vacation_days" placeholder="Dias de Férias" />
+    </label>
+    <button class="red" type="submit">Calcular</button>
+
+  </form>
+
+  <h3>Total (12 meses + Décimo Terceiro + Férias + Adicionais)</h3>
+  <p>R$<span id="total"></span></p>
+  <br />
+  <h3>Salário</h3>
+  <p>R$<span id="salary-gross"></span> (Bruto)</p>
+  <p>R$<span id="salary-liquid"></span> (Líquido)</p>
+  <br />
+  <h3>Décimo Terceiro</h3>
+  <p>R$<span id="thirteenth-gross"></span> (Bruto)</p>
+  <p>R$<span id="thirteenth-liquid"></span> (Líquido)</p>
+  <br />
+  <h3>Férias</h3>
+  <p><span id="vacation-days"></span> Dias</p>
+  <p>R$<span id="vacation-gross"></span> (Bruto)</p>
+  <p>R$<span id="vacation-liquid"></span> (Líquido)</p>
+
+  <script>
+    $("#calculateForm").submit(function (e) {
+
+      console.log(e);
+
+      $.ajax({
+        url: "/salary/calculate",
+        data: {
+          "gross": $("#gross").val(),
+          "months": $("#months").val(),
+          "vacation_days": $("#vacation_days").val()
+        },
+        cache: false,
+        type: "GET",
+        success: function (response) {
+          console.log(response)
+          $("#total").text(response.total.liquid);
+          $("#salary-gross").text(response.salary.gross);
+          $("#salary-liquid").text(response.salary.liquid);
+          $("#thirteenth-gross").text(response.thirteenth.gross);
+          $("#thirteenth-liquid").text(response.thirteenth.liquid);
+          $("#vacation-gross").text(response.vacation.gross);
+          $("#vacation-liquid").text(response.vacation.liquid);
+          $("#vacation-days").text(response.vacation.days);
+        },
+        error: function (xhr) {
+          console.error(xhr)
+        }
+      });
+
+      return false;
+    });
+  </script>
+
+</body>
+
+</html>
