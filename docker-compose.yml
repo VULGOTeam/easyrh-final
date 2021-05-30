@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+  mongo:
+    image: mongo
+    container_name: mongo-easyrh
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mateustozoni
+      MONGO_INITDB_ROOT_PASSWORD: 123mateus
+    ports:
+      - '28017:28017'
+
+volumes:
+  data:
+    driver: local
