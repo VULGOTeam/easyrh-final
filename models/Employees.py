@@ -8,7 +8,7 @@ class Employees(Document):
     data = DictField()
     gross = DecimalField(required=True, precision=2, force_string=False)
     vacations = IntField()
-    department = StringField(max_length=100)
+    department = StringField(max_length=60)
     hired_at = DateTimeField(required=True)
     created_at = DateTimeField()
     updated_at = DateTimeField(default=datetime.datetime.now)
