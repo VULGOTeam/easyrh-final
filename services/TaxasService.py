@@ -56,7 +56,6 @@ class TaxasService:
         else:
             raise Exception("NOT_FOUND")
 
-    @staticmethod
     def calculate(self, gross):
         taxes = self.taxes(gross)
 
