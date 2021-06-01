@@ -12,13 +12,19 @@ class Routes:
 
         @app.route('/')
         def _home():
-            user = Companies(
-                name="Mateus Teste",
-                email="mateusjosepretti@gmail.com",
-                cnpj="1234567891234567890"
-            ).save()
-            user.delete()
             return 'ok'
+
+        @app.route('/users/sign-in', methods=['POST'])
+        def _sign_in():
+            return self.authenticationController.login(request)
+
+        @app.route('/users/sign-in', methods=['PUT'])
+        def _verify_otp():
+            return self.authenticationController.verify_otp(request)
+
+        @app.route('/users', methods=['POST'])
+        def _sign_up():
+            return self.authenticationController.register(request)
 
         @app.route('/salary/calculate', methods=['GET'])
         def _calculate():
