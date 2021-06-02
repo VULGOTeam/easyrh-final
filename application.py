@@ -14,7 +14,7 @@ load_dotenv(dotenv_path)
 
 application = Flask(__name__)
 
-connect(host=os.environ["MONGO_URL"])
+connect(host=os.environ.get("MONGO_URL"))
 
 
 @application.errorhandler(InvalidUsage)

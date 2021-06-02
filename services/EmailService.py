@@ -7,7 +7,7 @@ from errors.InvalidUsage import InvalidUsage
 
 class EmailService:
     def __init__(self):
-        self.sendgrid = sendgrid.SendGridAPIClient(api_key=os.environ["SENDGRID_CLIENT"])
+        self.sendgrid = sendgrid.SendGridAPIClient(api_key=os.environ.get("SENDGRID_CLIENT"))
         self.mail = mail
         self.fromEmail = "mateus.jpt@puccampinas.edu.br"
         self.templateId = "d-8ffe69e1bb7c430c880d027e01f41ced"

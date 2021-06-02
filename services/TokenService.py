@@ -7,7 +7,7 @@ from errors.InvalidUsage import InvalidUsage
 
 class TokenService:
     def __init__(self):
-        self.secret = os.environ["JWT_SECRET"]
+        self.secret = os.environ.get("JWT_SECRET")
 
     def generate(self, payload):
         payload.update({"exp": datetime.datetime.timestamp(datetime.datetime.now() + datetime.timedelta(hours=6))})
