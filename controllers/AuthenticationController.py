@@ -63,3 +63,6 @@ class AuthenticationController:
             raise InvalidUsage(status_code=500, message="Falha ao criar o usuário")
 
         return Response(user.to_json(), mimetype='application/json')
+
+    def me(self, request):
+        return jsonify(self.authenticationService.me(request.headers.get("Authorization")))
