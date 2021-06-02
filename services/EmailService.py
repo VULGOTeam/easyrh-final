@@ -1,5 +1,6 @@
 import sendgrid
 import os
+
 from sendgrid.helpers import mail
 from errors.InvalidUsage import InvalidUsage
 
@@ -11,7 +12,7 @@ class EmailService:
         self.fromEmail = "mateus.jpt@puccampinas.edu.br"
         self.templateId = "d-8ffe69e1bb7c430c880d027e01f41ced"
 
-    def sendCode(self, email, code):
+    def send_code(self, email, code):
         message = mail.Mail(
             from_email=self.fromEmail,
             to_emails=email,

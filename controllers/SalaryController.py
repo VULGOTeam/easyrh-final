@@ -31,7 +31,8 @@ class SalaryController:
             total = self.salaryService.total(salary, vacation, thirteenth, adds, months)
         except InvalidUsage as e:
             raise e
-        except:
+        except Exception as e:
+            print(e)
             raise InvalidUsage("Server Error", status_code=500)
 
         return {

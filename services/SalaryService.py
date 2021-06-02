@@ -1,5 +1,6 @@
 class SalaryService:
-    def total(self, salary, vacation, thirteenth, adds, months):
+    @staticmethod
+    def total(salary, vacation, thirteenth, adds, months):
 
         totalLiquid = (salary["liquid"]*months) + vacation["liquid"] + thirteenth["liquid"] + adds
         totalGross = (salary["gross"] * months) + vacation["gross"] + thirteenth["gross"] + adds

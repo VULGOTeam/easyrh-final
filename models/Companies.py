@@ -1,8 +1,9 @@
 import datetime
 from mongoengine import *
+import mongoengine_goodjson as gj
 
 
-class Companies(Document):
+class Companies(gj.Document):
     name = StringField(required=True, max_length=100)
     email = EmailField(required=True, max_length=100)
     cnpj = StringField(required=True, max_length=19)
