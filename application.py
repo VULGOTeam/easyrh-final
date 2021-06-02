@@ -12,19 +12,20 @@ from errors.InvalidUsage import InvalidUsage
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 
-app = flask.Flask(__name__)
-app.config["DEBUG"] = True
+application = flask.Flask(__name__)
+application.config["DEBUG"] = True
 
 connect(host=os.environ.get("MONGO_URL"))
 
 
-@app.errorhandler(InvalidUsage)
+@application.errorhandler(InvalidUsage)
 def handle_invalid_usage(error):
     response = flask.jsonify(error.to_dict())
     response.status_code = error.status_code
     return response
 
 
-Routes(app)
+Routes(application)
 
-app.run()
+if __name__ == "__main__":
+    application.run()
