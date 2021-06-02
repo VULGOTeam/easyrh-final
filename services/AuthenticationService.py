@@ -62,3 +62,6 @@ class AuthenticationService:
                 name=data[1],
                 cnpj=data[2]
         ).save()
+
+    def me(self, token):
+        return self.tokenService.decode(token)

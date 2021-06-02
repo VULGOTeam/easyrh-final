@@ -32,6 +32,6 @@ class Routes:
             self.tokenService.decode(request.headers.get("Authorization"))
             return self.salaryController.index(request)
 
-        @application.route('/users/sign-in', methods=['POST'])
-        def _signIn():
-            return self.authenticationController.login(request)
+        @application.route('/users/me', methods=['GET'])
+        def _user_details():
+            return self.authenticationController.me(request)

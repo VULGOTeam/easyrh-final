@@ -16,7 +16,7 @@ class TokenService:
 
     def decode(self, token):
         try:
-            decoded = jwt.decode(token, self.secret, algorithms=["HS256"])
+            decoded = jwt.decode(token.replace('Bearer ', ''), self.secret, algorithms=["HS256"])
             return decoded
         except Exception:
             raise InvalidUsage(status_code=401, message='Token inválido')
