@@ -1,6 +1,6 @@
-from sendgrid import SendGridAPIClient
 import os
 
+from sendgrid.sendgrid import SendGridAPIClient
 from sendgrid.helpers import mail
 from errors.InvalidUsage import InvalidUsage
 
