@@ -1,12 +1,13 @@
-from flask import render_template, request
+from flask import request
 
 from controllers.SalaryController import SalaryController
 from controllers.AuthenticationController import AuthenticationController
-from models.Companies import Companies
+from services.TokenService import TokenService
 
 
 class Routes:
     def __init__(self, app):
+        self.tokenService = TokenService()
         self.salaryController = SalaryController()
         self.authenticationController = AuthenticationController()
 
@@ -28,6 +29,7 @@ class Routes:
 
         @app.route('/salary/calculate', methods=['GET'])
         def _calculate():
+            self.tokenService.decode(request.headers.get("Authorization"))
             return self.salaryController.index(request)
 
         @app.route('/users/sign-in', methods=['POST'])
