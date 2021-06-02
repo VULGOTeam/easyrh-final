@@ -4,8 +4,10 @@ from mongoengine import *
 
 class Taxes(Document):
     type = StringField(required=True, max_length=100)
-    ranges = ListField(DictField(required=True))
     year = StringField(required=True, max_length=4)
+    aliquot = DecimalField(required=True, precision=2, force_string=False)
+    deduction = DecimalField(required=True, precision=2, force_string=False)
+    range = ListField(DecimalField(precision=2, force_string=False))
     created_at = DateTimeField()
     updated_at = DateTimeField(default=datetime.datetime.now)
     deleted_at = DateTimeField(null=True)
