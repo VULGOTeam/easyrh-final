@@ -4,7 +4,7 @@ from mongoengine import *
 
 class Taxes(Document):
     type = StringField(required=True, max_length=100)
-    ranges = ListField()
+    ranges = ListField(DictField(required=True))
     year = StringField(required=True, max_length=4)
     created_at = DateTimeField()
     updated_at = DateTimeField(default=datetime.datetime.now)
