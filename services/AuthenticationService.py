@@ -63,5 +63,6 @@ class AuthenticationService:
                 cnpj=data[2]
         ).save()
 
-    def me(self, token):
-        return self.tokenService.decode(token)
+    def validate(self, request):
+        request.user = self.tokenService.decode(request.headers.get("Authorization"))
+        return request

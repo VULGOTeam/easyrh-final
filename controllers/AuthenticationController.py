@@ -65,4 +65,8 @@ class AuthenticationController:
         return Response(user.to_json(), mimetype='application/json')
 
     def me(self, request):
-        return jsonify(self.authenticationService.me(request.headers.get("Authorization")))
+        return jsonify(self.authenticationService.validate(request).user)
+
+    def validate(self, request):
+        request = self.authenticationService.validate(request)
+        return request
