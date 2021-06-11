@@ -19,3 +19,4 @@ sendgrid==6.7.0
 six==1.16.0
 starkbank-ecdsa==1.1.0
 Werkzeug==2.0.1
+gunicorn==19.9.0
